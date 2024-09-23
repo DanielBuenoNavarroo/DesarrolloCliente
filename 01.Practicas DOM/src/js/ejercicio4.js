@@ -10,11 +10,11 @@ btn.addEventListener("click", function () {
   let valor = input.value;
   if (valor === "") {
     alert("Ingrese un valor");
-    return;
+  } else {
+    lista.push(valor);
+    input.value = "";
+    agregarItem();
   }
-  lista.push(valor);
-  input.value = "";
-  agregarItem();
 });
 
 const agregarItem = () => {
