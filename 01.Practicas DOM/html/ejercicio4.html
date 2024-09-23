@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      button {
+        background-color: #fff;
+      }
+
+      button:hover {
+        background-color: #000;
+        color: #fff;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      li {
+        max-width: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px #000;
+        padding-left: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    ejercicio4: 
+    <input type="text" id="insert" />
+    <button id="boton">Insertar</button>
+    <ul id="lista"></ul>
+    <script src="../js/ejercicio4.js" lang="js"></script>
+  </body>
 </html>
