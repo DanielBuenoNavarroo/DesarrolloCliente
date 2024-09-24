@@ -2,10 +2,11 @@ console.log("Ejercicio 4");
 
 let lista = [];
 
-const btn = document.getElementById("boton");
+const addBtn = document.getElementById("add");
+const removeBtn = document.getElementById("remove");
 const ul = document.getElementById("lista");
 
-btn.addEventListener("click", function () {
+addBtn.addEventListener("click", () => {
   let input = document.getElementById("insert");
   let valor = input.value;
   if (valor === "") {
@@ -17,20 +18,17 @@ btn.addEventListener("click", function () {
   }
 });
 
+removeBtn.addEventListener("click", () => {
+  let liList = document.getElementsByTagName("li");
+  if (liList.length) {
+    ul.removeChild(liList[liList.length - 1]);
+  } else {
+    alert("No hay más etiquetas para elminar");
+  }
+});
+
 const agregarItem = () => {
   let li = document.createElement("li");
-  let removeBtn = document.createElement("button");
   li.textContent = lista[lista.length - 1];
-  removeBtn.textContent = "Eliminar";
-  removeBtn.onmouseenter = () => {
-    removeBtn.style.backgroundColor = "red";
-  };
-  removeBtn.onmouseleave = () => {
-    removeBtn.style.backgroundColor = "white";
-  };
-  removeBtn.addEventListener("click", () => {
-    li.remove();
-  });
-  li.appendChild(removeBtn);
   ul.appendChild(li);
 };
