@@ -1,3 +1,5 @@
+@import url(./var.css);
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -7,7 +9,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #1a1a1a;
+  background: var(--main-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,5 +33,59 @@ body {
     align-items: center;
     justify-content: start;
     gap: 2rem;
+  }
+
+  #numero {
+    width: 150px;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 1rem;
+    text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+  }
+
+  #adivinar {
+    background: #22c70c;
+    width: var(--button-width);
+    height: var(--button-height);
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+
+    &:disabled {
+      background: var(--disabled-color);
+    }
+
+    &:hover {
+      background: #1ba109;
+    }
+  }
+
+  #reiniciar {
+    background: #c7220c;
+    width: var(--button-width);
+    height: var(--button-height);
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+
+    &:disabled {
+      background: var(--disabled-color);
+    }
+
+    &:hover {
+      background: #a11b09;
+    }
   }
 }
