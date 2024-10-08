@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <select name="modelo" id="modelo">
+        <option value="null" selected>Elige Modelo</option>
+        <option value="1">Tollota Carolla</option>
+        <option value="2">Honda Civic</option>
+      </select>
+      <select name="color" id="color">
+        <option value="null" selected>Elige Color</option>
+        <option value="amarillo">Amarillo</option>
+        <option value="azul">Azul</option>
+        <option value="rojo">Rojo</option>
+      </select>
+      <label for="year">Año fabricación</label>
+      <input type="number" value="0" name="year" id="year" />
+      <label for="cost">Precio</label>
+      <input type="number" name="cost" id="cost" />
+      <button id="enviar">Aceptar</button>
+    </div>
+    <div>
+      <ul id="mostrarCoches"></ul>
+    </div>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

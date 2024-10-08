@@ -1,0 +1,9 @@
+.mal {
+  border: solid 1px red;
+}
+
+.eliminar {
+  background: red;
+  color: white;
+  padding: 0.5rem 1rem;
+}
