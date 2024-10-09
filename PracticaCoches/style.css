@@ -1,9 +1,24 @@
+select {
+  background: #ffffff;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
 .mal {
-  border: solid 1px red;
+  background: red;
 }
 
 .eliminar {
   background: red;
   color: white;
   padding: 0.5rem 1rem;
+
+  &:hover {
+    background: rgb(212, 0, 0);
+  }
+
+  &:active {
+    background: red;
+  }
 }

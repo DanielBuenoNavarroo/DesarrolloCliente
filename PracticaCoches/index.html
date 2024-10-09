@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div>
       <select name="modelo" id="modelo">
         <option value="null" selected>Elige Modelo</option>
-        <option value="1">Tollota Carolla</option>
-        <option value="2">Honda Civic</option>
+        <option value="Toyota Carolla">Toyota Carolla</option>
+        <option value="Honda Civic">Honda Civic</option>
       </select>
       <select name="color" id="color">
         <option value="null" selected>Elige Color</option>
@@ -19,7 +20,7 @@
         <option value="rojo">Rojo</option>
       </select>
       <label for="year">Año fabricación</label>
-      <input type="number" value="0" name="year" id="year" />
+      <select name="year" id="year"></select>
       <label for="cost">Precio</label>
       <input type="number" name="cost" id="cost" />
       <button id="enviar">Aceptar</button>
