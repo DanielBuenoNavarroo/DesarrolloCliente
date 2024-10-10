@@ -7,23 +7,29 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <select name="modelo" id="modelo">
-        <option value="null" selected>Elige Modelo</option>
-        <option value="Toyota Carolla">Toyota Carolla</option>
-        <option value="Honda Civic">Honda Civic</option>
-      </select>
-      <select name="color" id="color">
-        <option value="null" selected>Elige Color</option>
-        <option value="amarillo">Amarillo</option>
-        <option value="azul">Azul</option>
-        <option value="rojo">Rojo</option>
-      </select>
-      <label for="year">Año fabricación</label>
-      <select name="year" id="year"></select>
-      <label for="cost">Precio</label>
-      <input type="number" name="cost" id="cost" />
-      <button id="enviar">Aceptar</button>
+    <div class="container">
+      <div class="content">
+        <select name="modelo" id="modelo" class="select">
+          <option value="null" selected>Elige Modelo</option>
+          <option value="Toyota Carolla">Toyota Carolla</option>
+          <option value="Honda Civic">Honda Civic</option>
+        </select>
+        <select name="color" id="color" class="select">
+          <option value="null" selected>Elige Color</option>
+          <option value="amarillo">Amarillo</option>
+          <option value="azul">Azul</option>
+          <option value="rojo">Rojo</option>
+        </select>
+        <select name="year" id="year" class="select"></select>
+        <label for="cost">Precio</label>
+        <input
+          type="number"
+          name="cost"
+          id="cost"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+        />
+        <button id="enviar">Aceptar</button>
+      </div>
     </div>
     <div>
       <ul id="mostrarCoches"></ul>

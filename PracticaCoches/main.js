@@ -10,9 +10,14 @@ const input_precio = document.getElementById("cost");
 const button_enviar = document.getElementById("enviar");
 const ul_coches = document.getElementById("mostrarCoches");
 
-button_enviar.addEventListener("click", () => handleClick());
+input_precio.addEventListener("keypress", (e) => {
+  const regex = /[0-9]/;
+  if (!regex.test(e.key)) {
+    console.log(input_precio);
+  }
+});
 
-const handleClick = () => {
+button_enviar.addEventListener("click", () => {
   if (validate()) {
     const coche = new Coche(
       select_modelo.value,
@@ -24,7 +29,7 @@ const handleClick = () => {
     addToLocalStorage(coche);
     addToList(coche, listCoches.length - 1);
   }
-};
+});
 
 const validate = () => {
   select_modelo.classList.remove("mal");

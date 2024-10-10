@@ -1,8 +1,48 @@
-select {
-  background: #ffffff;
-  outline: none;
-  border: 1px solid black;
-  border-radius: 1rem;
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+.container {
+  width: 300px;
+  height: 350px;
+  position: relative;
+  text-align: center;
+
+  .content {
+    padding: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backface-visibility: hidden;
+    background: lightgrey;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid #222222;
+    box-shadow: 4px 4px #222222;
+  }
+
+  select {
+    appearance: none;
+    border: none;
+  }
+
+  .select {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    box-shadow: 4px 4px #222222;
+  }
 }
 
 .mal {
