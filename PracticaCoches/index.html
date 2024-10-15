@@ -9,6 +9,7 @@
   <body>
     <div class="container">
       <div class="content">
+        <div class="error-msg" id="error"></div>
         <select name="modelo" id="modelo" class="select">
           <option value="null" selected>Elige Modelo</option>
           <option value="Toyota Carolla">Toyota Carolla</option>
@@ -21,12 +22,12 @@
           <option value="rojo">Rojo</option>
         </select>
         <select name="year" id="year" class="select"></select>
-        <label for="cost">Precio</label>
         <input
           type="number"
           name="cost"
           id="cost"
           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+          placeholder="Precio"
         />
         <button id="enviar">Aceptar</button>
       </div>

@@ -3,6 +3,7 @@ import Coche from "./Coche.js";
 const nameList = "listCoches";
 const listCoches = JSON.parse(localStorage.getItem(nameList)) || [];
 
+const div_error = document.getElementById("error");
 const select_modelo = document.getElementById("modelo");
 const select_color = document.getElementById("color");
 const select_fecha = document.getElementById("year");
@@ -10,12 +11,7 @@ const input_precio = document.getElementById("cost");
 const button_enviar = document.getElementById("enviar");
 const ul_coches = document.getElementById("mostrarCoches");
 
-input_precio.addEventListener("keypress", (e) => {
-  const regex = /[0-9]/;
-  if (!regex.test(e.key)) {
-    console.log(input_precio);
-  }
-});
+div_error.style.display = "none";
 
 button_enviar.addEventListener("click", () => {
   if (validate()) {
@@ -32,30 +28,34 @@ button_enviar.addEventListener("click", () => {
 });
 
 const validate = () => {
-  select_modelo.classList.remove("mal");
-  select_color.classList.remove("mal");
-  select_fecha.classList.remove("mal");
-  input_precio.classList.remove("mal");
-
+  div_error.style.display = "none";
+  div_error.innerHTML = "";
   let continuar = true;
   if (select_modelo.value === "null") {
-    select_modelo.classList.add("mal");
+    addError("Elige un modelo válido");
     continuar = false;
   }
   if (select_color.value === "null") {
-    select_color.classList.add("mal");
+    addError("Elige un color válido");
     continuar = false;
   }
   if (select_fecha.value < 2000 || select_fecha.value > 2024) {
-    select_fecha.classList.add("mal");
+    addError("Elige una fecha válida");
     continuar = false;
   }
   if (input_precio.value === 0) {
-    input_precio.classList.add("mal");
+    addError("Elige un precio válido");
     continuar = false;
   }
   console.log(continuar);
   return continuar;
+};
+
+const addError = (msg) => {
+  div_error.style.display = "block";
+  const p = document.createElement("p");
+  p.textContent = msg;
+  div_error.appendChild(p);
 };
 
 const addToLocalStorage = (coche) => {
