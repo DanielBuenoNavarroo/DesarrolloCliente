@@ -82,9 +82,8 @@ const addToList = (coche, index) => {
   ul_coches.appendChild(li);
 };
 
-// Ejecutar al inicio:
+// Ejecutar al inicio //
 if (listCoches.length) {
-  console.log(listCoches);
   listCoches.forEach((coche, index) => {
     const newCoche = new Coche(
       coche.modelo,
