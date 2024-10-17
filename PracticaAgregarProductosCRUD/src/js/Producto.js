@@ -20,7 +20,7 @@ export default class Producto {
       <p class="font-bold mt-2">€${this.price}</p>
       <p class="text-gray-400 mt-2">Stock: <span class="font-medium">${this.stock}</span></p>
     </div>
-    `
+    `;
 
     const div_buttons = document.createElement("div");
     div_buttons.className = "w-full flex justify-between px-4 py-2";
@@ -29,13 +29,13 @@ export default class Producto {
     btn_edit.className =
       "w-24 bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 py-1 transition duration-200";
     btn_edit.textContent = "Editar";
-    btn_edit.addEventListener("click", () => handleEdit());
+    btn_edit.addEventListener("click", () => handleEdit(this.ID, div));
 
     const btn_delete = document.createElement("button");
     btn_delete.className =
       "w-24 bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-1 transition duration-200";
     btn_delete.textContent = "Eliminar";
-    btn_delete.addEventListener("click", () => handleDelete());
+    btn_delete.addEventListener("click", () => handleDelete(this.ID, div));
 
     div_buttons.appendChild(btn_edit);
     div_buttons.appendChild(btn_delete);
@@ -46,10 +46,12 @@ export default class Producto {
   }
 }
 
-const handleEdit = () => {
-  console.log('Editando')
+const handleEdit = (id, div) => {
+  console.log("Editando");
 };
 
-const handleDelete = () => {
-  console.log('Eliminado')
+const handleDelete = (id, div) => {
+  const div_lista = document.getElementById("lista");
+  div_lista.removeChild(div);
+  
 };

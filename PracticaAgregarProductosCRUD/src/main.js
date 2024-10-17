@@ -1,7 +1,6 @@
 import Producto from "./js/Producto.js";
 import generarForm from "./js/newProductsForm.js";
 
-// On Mount //
 generarForm();
 
 const NAME_LIST = "articulos";
@@ -19,27 +18,29 @@ const input_submit = document.getElementById("submit");
 
 input_submit.addEventListener("click", (e) => {
   e.preventDefault();
-  if (validate()) {
-    const producto = new Producto(
-      input_ID.value,
-      input_description.value,
-      input_category.value,
-      input_url.value,
-      input_price.value,
-      input_stock.value
-    );
-
+  const producto = new Producto(
+    input_ID.value,
+    input_description.value,
+    input_category.value,
+    input_url.value,
+    input_price.value,
+    input_stock.value
+  );
+  if (validate(producto)) {
     // Add to local Storage
     listProductos.push(producto);
-    if (listProductos.length > 1) listProductos.short((a, b) => a.ID - b.ID);
+    if (listProductos.length > 1) listProductos.sort((a, b) => a.ID - b.ID);
     localStorage.setItem(NAME_LIST, JSON.stringify(listProductos));
 
     displayProducts(producto);
   }
 });
 
-const validate = () => {
+const validate = (producto) => {
   let continuar = true;
+  if(listProductos.some((e) => e.ID === producto.ID)){
+    
+  };
   return continuar;
 };
 
