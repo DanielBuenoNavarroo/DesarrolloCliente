@@ -8,7 +8,7 @@ export default class Producto {
     this.stock = stock;
   }
 
-  mostrarProducto() {
+  mostrarProducto(index) {
     const div = document.createElement("div");
     div.className = "w-64 h-[350px] border rounded-lg shadow-lg bg-gray-800";
 
@@ -52,6 +52,6 @@ const handleEdit = (id, div) => {
 
 const handleDelete = (id, div) => {
   const div_lista = document.getElementById("lista");
+  div.remove();
   div_lista.removeChild(div);
-  
 };

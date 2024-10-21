@@ -29,7 +29,7 @@ input_submit.addEventListener("click", (e) => {
   if (validate(producto)) {
     // Add to local Storage
     listProductos.push(producto);
-    if (listProductos.length > 1) listProductos.sort((a, b) => a.ID - b.ID);
+    // if (listProductos.length > 1) listProductos.sort((a, b) => a.ID - b.ID);
     localStorage.setItem(NAME_LIST, JSON.stringify(listProductos));
 
     displayProducts(producto);
@@ -38,14 +38,23 @@ input_submit.addEventListener("click", (e) => {
 
 const validate = (producto) => {
   let continuar = true;
-  if(listProductos.some((e) => e.ID === producto.ID)){
-    
-  };
+  if (
+    !input_ID.value ||
+    !input_description.value ||
+    !input_category.value ||
+    !input_url.value ||
+    !input_price.value
+  ) {
+    continuar = false;
+  }
+  if (listProductos.some((e) => e.ID === producto.ID)) {
+    continuar = false;
+  }
   return continuar;
 };
 
-const displayProducts = (producto) =>
-  div_lista.appendChild(producto.mostrarProducto());
+const displayProducts = (producto, index) =>
+  div_lista.appendChild(producto.mostrarProducto(index));
 
 // Ejecutar al inicio //
 if (listProductos.length) {
@@ -58,6 +67,6 @@ if (listProductos.length) {
       producto.price,
       producto.stock
     );
-    displayProducts(newProduct);
+    displayProducts(newProduct, i);
   });
 }
