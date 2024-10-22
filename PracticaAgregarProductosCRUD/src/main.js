@@ -37,9 +37,9 @@ const changeEditMode = (product = null) => {
           changeEditMode();
         });
       form.appendChild(buttonChangeEdit);
+      isEditing = true;
     }
     editProduct = product;
-    isEditing = true;
   } else {
     generarNewProductForm();
     isEditing = false;
@@ -67,8 +67,8 @@ input_submit.addEventListener("click", (e) => {
   } else if (isValid && isEditing) {
     const div_data = document.getElementById("lista");
     const nodeList = div_data.childNodes;
-    const index = listProductos.findIndex((e) => e.ID === producto.ID);
-    nodeList[index].replaceWith(producto.mostrarProducto());
+    const index = listProductos.findIndex((e) => e.ID === product.ID);
+    nodeList[index].replaceWith(product.mostrarProducto());
     listProductos[index] = product;
     generarNewProductForm();
   }
@@ -76,7 +76,6 @@ input_submit.addEventListener("click", (e) => {
 });
 
 const validate = (product) => {
-  let continuar = true;
   p_error.classList.add("hidden");
   p_error.textContent = "";
 
@@ -89,18 +88,18 @@ const validate = (product) => {
   ) {
     p_error.textContent = "Faltan campos por rellenar";
     p_error.classList.remove("hidden");
-    continuar = false;
+    return false
   }
 
   if (!isEditing || (isEditing && product.ID !== editProduct.ID)) {
     if (listProductos.some((e) => e.ID === product.ID)) {
       p_error.textContent = "El ID ya existe";
       p_error.classList.remove("hidden");
-      continuar = false;
+      return false
     }
   }
 
-  return continuar;
+  return true;
 };
 
 const displayProducts = (product) => {
