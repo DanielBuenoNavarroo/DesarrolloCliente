@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" id="name" placeholder="Nombre" />
+      <input type="text" id="email" placeholder="Correo electrónico" />
+      <input type="submit" id="send" value="Enviar" />
+    </form>
+    <p id="mensaje"></p>
+    <script>
+      const submit = document.getElementById("send");
+      const message = document.getElementById("mensaje");
+
+      submit.addEventListener("click", (e) => {
+        e.preventDefault();
+        fetch("./ej2.json", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+          }),
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Error al hacer el fetch");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            message.textContent = data.message;
+          })
+          .catch((err) => {
+            message.textContent = "Error";
+          });
+      });
+    </script>
+  </body>
+</html>

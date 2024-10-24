@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">Traer datos</button>
+    <div id="mostrar"></div>
+    <script>
+      const btn = document.getElementById("btn");
+      const mostrar = document.getElementById("mostrar");
+
+      btn.addEventListener("click", () => {
+        fetch("./ej1.json")
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Error al hacer la llamada");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            mostrar.textContent = JSON.stringify(data);
+          })
+          .catch((err) => {
+            mostrar.textContent = err;
+          });
+      });
+    </script>
+  </body>
+</html>
