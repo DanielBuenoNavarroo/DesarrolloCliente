@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list-categories"> 
+
+    </ul>
+    <div>
+      <input type="text" name="category" id="getCategory" />
+      <button onclick="getCategories()">GetCategorias</button>
+    </div>
+    <br>
+    <div>
+        <input type="text" name="createName" id="createName">
+        <input type="text" name="createDesc" id="createDesc">
+        <button onclick="handlePOST_GET()">Create Category</button>
+    </div>
+    <br>
+    <div>
+        <input type="text" name="updateName" id="updateName">
+        <input type="text" name="updateDesc" id="updateDesc">
+        <button onclick="postCategories()">Update Category</button>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
