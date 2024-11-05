@@ -1,21 +1,54 @@
 "use strict";
 const url = "http://10.10.13.50/tienda/public/api/v1/api.php/categorias";
+const select = document.getElementById("select-categories");
+const nameCategory = document.getElementById("nameCategory");
+const descCategory = document.getElementById("descCategory");
+let categories = [];
 const displayCategories = async () => {
-    const list = document.getElementById("list-categories");
-    const categories = await getCategories();
-    if (list && categories) {
+    categories = (await getCategories()) || [];
+    select.innerHTML = "";
+    if (categories) {
         categories.forEach((category) => {
-            list.innerHTML += `<li class="card" id="${category.id}">
-            <p>Nombre: ${category.nombre}</p>
-            <p>Desc: ${category.descripcion}</p>
-        </li>`;
+            const option = document.createElement("option");
+            option.id = category.id;
+            option.value = category.id;
+            option.text = category.nombre;
+            select?.appendChild(option);
         });
+    }
+    else {
+        console.log("no hay categorias");
+    }
+};
+const changeFormType = (isEdit = false) => {
+    const title = document.getElementById("tipo");
+    const button = document.getElementById("enviar");
+    const button_editar = document.getElementById("editar");
+    const button_add = document.getElementById("add");
+    if (isEdit) {
+        const id = select.value;
+        title && (title.textContent = "Editar categoria");
+        button && (button.onclick = updateCategory);
+        const index = categories.findIndex((category) => category.id.toString() === id);
+        if (index !== -1) {
+            nameCategory.value = categories[index].nombre;
+            descCategory.value = categories[index].descripcion;
+        }
+        button_add?.classList.remove("disabled");
+        button_editar?.classList.add("disabled");
+    }
+    else {
+        title && (title.textContent = "Añadir categoría");
+        button && (button.onclick = postCategory);
+        nameCategory.value = "";
+        descCategory.value = "";
+        button_add?.classList.add("disabled");
+        button_editar?.classList.remove("disabled");
     }
 };
 const getCategories = async () => {
-    const id = document.getElementById("getCategory").value.trim();
     try {
-        const response = await fetch(id ? `${url}/${id}` : url);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
@@ -28,8 +61,8 @@ const getCategories = async () => {
     }
 };
 const postCategory = async () => {
-    const name = document.getElementById("createName").value.trim();
-    const desc = document.getElementById("createDesc").value.trim();
+    const name = nameCategory.value.trim();
+    const desc = descCategory.value.trim();
     if (name) {
         const options = {
             method: "POST",
@@ -43,10 +76,12 @@ const postCategory = async () => {
         };
         try {
             const response = await fetch(url, options);
+            console.log(response);
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
-            return await response.json();
+            const newCategory = await response.json();
+            categories.push(newCategory);
         }
         catch (error) {
             console.log("Error al crear la categoría:", error);
@@ -54,7 +89,7 @@ const postCategory = async () => {
     }
 };
 const updateCategory = async () => {
-    const id = document.getElementById("getCategory").value.trim();
+    const id = select?.value;
     const name = document.getElementById("createName").value.trim();
     const desc = document.getElementById("createDesc").value.trim();
     if (id && name) {
@@ -65,7 +100,7 @@ const updateCategory = async () => {
             },
             body: JSON.stringify({
                 nombre: name,
-                descripcion: desc,
+                descripcion: desc || "",
             }),
         };
         try {
@@ -81,7 +116,7 @@ const updateCategory = async () => {
     }
 };
 const deleteCategory = async () => {
-    const id = document.getElementById("getCategory").value.trim();
+    const id = select?.value;
     if (id) {
         const options = {
             method: "DELETE",
@@ -92,10 +127,15 @@ const deleteCategory = async () => {
                 throw new Error(`Error: ${response.status}`);
             }
             console.log("Categoría eliminada con éxito");
+            displayCategories();
         }
         catch (error) {
             console.log("Error al eliminar la categoría:", error);
         }
     }
+    else {
+        console.log("no hay categoria seleccionada");
+    }
 };
 displayCategories();
+changeFormType();

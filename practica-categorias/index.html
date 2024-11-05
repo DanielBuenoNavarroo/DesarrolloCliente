@@ -4,27 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <ul id="list-categories"> 
-
-    </ul>
-    <div>
-      <input type="text" name="category" id="getCategory" />
-      <button onclick="getCategories()">GetCategorias</button>
-    </div>
-    <br>
-    <div>
-        <input type="text" name="createName" id="createName">
-        <input type="text" name="createDesc" id="createDesc">
-        <button onclick="handlePOST_GET()">Create Category</button>
-    </div>
-    <br>
-    <div>
-        <input type="text" name="updateName" id="updateName">
-        <input type="text" name="updateDesc" id="updateDesc">
-        <button onclick="postCategories()">Update Category</button>
-    </div>
+    <h1>CATEGORIAS</h1>
+    <select
+      name="select-categories"
+      id="select-categories"
+      style="
+        padding: 0.5rem 1rem;
+        border: none;
+        outline: none;
+        border-radius: 0.5rem;
+      "
+    ></select>
+    <button id="eliminar" onclick="deleteCategory()">Eliminar Categoria</button>
+    <button id="editar" onclick="changeFormType(true)">Editar Categoria</button>
+    <button id="add" class="disabled" onclick="changeFormType()">Añadir Categoria</button>
+    <form>
+      <h1 id="tipo"></h1>
+      <input
+        type="text"
+        name="nameCategory"
+        id="nameCategory"
+        placeholder="nombre"
+      />
+      <input
+        type="text"
+        name="descCategory"
+        id="descCategory"
+        placeholder="descripcion"
+      />
+      <button id="enviar">Enviar</button>
+    </form>
     <script src="main.js"></script>
   </body>
 </html>
