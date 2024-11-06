@@ -20,7 +20,9 @@
     ></select>
     <button id="eliminar" onclick="deleteCategory()">Eliminar Categoria</button>
     <button id="editar" onclick="changeFormType(true)">Editar Categoria</button>
-    <button id="add" class="disabled" onclick="changeFormType()">Añadir Categoria</button>
+    <button id="add" class="disabled" onclick="changeFormType()">
+      Añadir Categoria
+    </button>
     <form>
       <h1 id="tipo"></h1>
       <input
@@ -35,8 +37,8 @@
         id="descCategory"
         placeholder="descripcion"
       />
-      <button id="enviar">Enviar</button>
     </form>
+    <button id="enviar" onclick="handleCategory()">Enviar</button>
     <script src="main.js"></script>
   </body>
 </html>

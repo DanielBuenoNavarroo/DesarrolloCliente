@@ -20,6 +20,7 @@ body {
 #add,
 #editar {
   width: 10rem;
+  margin-top: 1rem;
   padding: 0.5rem 1rem;
   border: none;
   outline: none;
@@ -45,12 +46,12 @@ body {
 }
 
 #add {
-    background-color: #22c55e;
-  
-    &:hover {
-      background-color: #16a34a;
-    }
+  background-color: #22c55e;
+
+  &:hover {
+    background-color: #16a34a;
   }
+}
 
 form {
   margin-top: 1rem;
@@ -64,17 +65,17 @@ form {
     width: 20rem;
     padding: 0.5rem 1rem;
   }
+}
 
-  button {
-    width: 5rem;
-    border: none;
-    outline: none;
-    margin-top: 0.5rem;
-    margin-left: 7.5rem;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    border-radius: 0.25rem;
-  }
+#enviar {
+  width: 5rem;
+  border: none;
+  outline: none;
+  margin-top: 0.5rem;
+  margin-left: 7.5rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 0.25rem;
 }
 
 .list-categories {

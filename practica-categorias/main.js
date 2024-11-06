@@ -5,8 +5,10 @@ const nameCategory = document.getElementById("nameCategory");
 const descCategory = document.getElementById("descCategory");
 let categories = [];
 const displayCategories = async () => {
+    changeFormType();
     categories = (await getCategories()) || [];
     select.innerHTML = "";
+    select.innerHTML += `<option value="" selected>Escoge una categoria</option>`;
     if (categories) {
         categories.forEach((category) => {
             const option = document.createElement("option");
@@ -22,13 +24,11 @@ const displayCategories = async () => {
 };
 const changeFormType = (isEdit = false) => {
     const title = document.getElementById("tipo");
-    const button = document.getElementById("enviar");
     const button_editar = document.getElementById("editar");
     const button_add = document.getElementById("add");
     if (isEdit) {
         const id = select.value;
         title && (title.textContent = "Editar categoria");
-        button && (button.onclick = updateCategory);
         const index = categories.findIndex((category) => category.id.toString() === id);
         if (index !== -1) {
             nameCategory.value = categories[index].nombre;
@@ -39,7 +39,6 @@ const changeFormType = (isEdit = false) => {
     }
     else {
         title && (title.textContent = "Añadir categoría");
-        button && (button.onclick = postCategory);
         nameCategory.value = "";
         descCategory.value = "";
         button_add?.classList.add("disabled");
@@ -60,59 +59,26 @@ const getCategories = async () => {
         console.log("Error al obtener las categorías:", error);
     }
 };
-const postCategory = async () => {
+const handleCategory = async () => {
+    const id = select?.value;
     const name = nameCategory.value.trim();
     const desc = descCategory.value.trim();
-    if (name) {
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nombre: name,
-                descripcion: desc,
-            }),
-        };
-        try {
-            const response = await fetch(url, options);
-            console.log(response);
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
-            }
-            const newCategory = await response.json();
-            categories.push(newCategory);
-        }
-        catch (error) {
-            console.log("Error al crear la categoría:", error);
-        }
+    const options = {
+        method: id ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            nombre: name,
+            descripcion: desc || "",
+        }),
+    };
+    try {
+        const response = await fetch(id ? `${url}/${id}` : url, options);
+        if (!response.ok)
+            throw new Error(`Error al ${id ? "actualizar" : "crear"} la categoría`);
+        displayCategories();
     }
-};
-const updateCategory = async () => {
-    const id = select?.value;
-    const name = document.getElementById("createName").value.trim();
-    const desc = document.getElementById("createDesc").value.trim();
-    if (id && name) {
-        const options = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nombre: name,
-                descripcion: desc || "",
-            }),
-        };
-        try {
-            const response = await fetch(`${url}/${id}`, options);
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
-            }
-            return await response.json();
-        }
-        catch (error) {
-            console.log("Error al actualizar la categoría:", error);
-        }
+    catch (error) {
+        console.log("Error al eliminar la categoría:", error);
     }
 };
 const deleteCategory = async () => {
@@ -137,5 +103,9 @@ const deleteCategory = async () => {
         console.log("no hay categoria seleccionada");
     }
 };
+// On mounted
 displayCategories();
 changeFormType();
+select.addEventListener("change", (event) => {
+    select.value ? changeFormType(true) : changeFormType();
+});
