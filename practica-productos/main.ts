@@ -1,4 +1,4 @@
-import { getProducts, getProductByID, Product } from "./js/api";
+import { getProducts, getProductByID, Product } from "./api/index";
 
 let products: Product[] = [];
 
@@ -13,13 +13,17 @@ const displayProduct = ({
   categoria_id,
 }: Product) => {
   return `<li>
-            <h1>${nombre}</h1>
-            <p>${descripcion}</p>
-            <img src="${imagen}"></img>
-            <p>$${precio}</p>
-            <p>${categoria_id}</p>
-            <button>Editar</button>
-            <button>Eliminar</button>
+            <div class="image" style="background-image: url('${imagen}');"></div>
+            <div class="content">
+              <h1>${nombre}</h1>
+              <p>${descripcion}</p>
+              <p>$${precio}</p>
+              <p>${categoria_id}</p>
+            </div>
+            <div>
+              <button class="editar">Editar</button>
+              <button class="eliminar">Eliminar</button>
+            </div>
         </li>`;
 };
 
@@ -31,7 +35,7 @@ const displayAllProducts = async () => {
         (product) => (productList.innerHTML += displayProduct(product))
       )
     : (productList.innerHTML =
-        "<li><h1>No hay productos para mostrar<h1/></li>");
+        "<div style=''><h1>No hay productos para mostrar<h1/></div>");
 };
 
 // On mounted
