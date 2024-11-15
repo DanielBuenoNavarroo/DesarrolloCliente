@@ -1,9 +1,9 @@
 import { getProducts } from "./api/index";
 let products = [];
-const searchInput = document.getElementById("searchProduct");
+const searchIDInput = document.getElementById("searchIDProduct");
 const productList = document.getElementById("product-list");
-const displayProduct = ({ nombre, descripcion, imagen, precio, categoria_id, }) => {
-    return `<li>
+const displayProduct = ({ id, nombre, descripcion, imagen, precio, categoria_id, }) => {
+    return `<li id="${id}">
             <div class="image" style="background-image: url('${imagen}');"></div>
             <div class="content">
               <h1>${nombre}</h1>

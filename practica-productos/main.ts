@@ -2,17 +2,18 @@ import { getProducts, getProductByID, Product } from "./api/index";
 
 let products: Product[] = [];
 
-const searchInput = <HTMLInputElement>document.getElementById("searchProduct");
+const searchIDInput = <HTMLInputElement>document.getElementById("searchIDProduct");
 const productList = <HTMLUListElement>document.getElementById("product-list");
 
 const displayProduct = ({
+  id,
   nombre,
   descripcion,
   imagen,
   precio,
   categoria_id,
 }: Product) => {
-  return `<li>
+  return `<li id="${id}">
             <div class="image" style="background-image: url('${imagen}');"></div>
             <div class="content">
               <h1>${nombre}</h1>
